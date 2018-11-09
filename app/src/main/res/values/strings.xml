@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Tong_Chang</string>
+
+    <string name="search">Search Naughty Child</string>
+    <string name="add">Add Naughty Child</string>
+    <string name="show">Show All Naughty Child</string>
+</resources>
