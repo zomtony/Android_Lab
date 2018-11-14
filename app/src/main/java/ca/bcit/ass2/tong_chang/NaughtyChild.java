@@ -3,6 +3,7 @@ package ca.bcit.ass2.tong_chang;
 import java.util.Date;
 
 public class NaughtyChild {
+    private int id;
     private String firstName;
     private String lastName;
     private String birthday;
@@ -11,14 +12,14 @@ public class NaughtyChild {
     private String province;
     private String postalCode;
     private String country;
-    private int latitude;
-    private int longitude;
+    private double latitude;
+    private double longitude;
     private int isNaughty;
     private String dateCreated;
 
     // Each country has a name, description and an image resource
     public NaughtyChild(String firstName, String lastName,  String birthday, String street, String city, String province,
-                   String postalCode, String country, int latitude, int longitude, int isNaughty, String dateCreated) {
+                   String postalCode, String country, double latitude, double longitude, int isNaughty, String dateCreated) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
@@ -112,19 +113,19 @@ public class NaughtyChild {
         this.country = country;
     }
 
-    public int getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(int latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public int getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(int longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
@@ -143,4 +144,13 @@ public class NaughtyChild {
     public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
 }

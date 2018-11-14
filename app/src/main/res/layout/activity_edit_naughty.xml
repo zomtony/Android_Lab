@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EditNaughtyActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/idNaughty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="0dp"
+                android:height="0dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/firstNameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/firstName"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/firstName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="300dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/lastNameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/lastName"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/lastName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="300dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/birthdayLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/birthday"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/birthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="300dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/streetLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/street"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/street"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="300dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/cityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/city"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/cityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="300dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/provinceLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/province"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/province"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="300dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/postalCodeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/postalCode"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/postalCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="300dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/countryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/country"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="300dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/latitudeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/latitude"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/latitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="300dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/longitudeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/longitude"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/longitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="300dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/isNaughtyLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/isNaughty"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/isNaughty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="300dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/dateCreatedLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/dateCreated"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/dateCreated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:width="300dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/SubmitButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/submit"
+                android:onClick="submitInfo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="200dp" />
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

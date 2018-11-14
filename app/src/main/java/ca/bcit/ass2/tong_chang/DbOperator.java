@@ -41,14 +41,14 @@ public class DbOperator extends SQLiteOpenHelper {
         sql += "PROVINCE TEXT, ";
         sql += "POSTALCODE TEXT, ";
         sql += "COUNTRY TEXT, ";
-        sql += "LATITUDE INTEGER, ";
-        sql += "LONGITUDE INTEGER, ";
-        sql += "ISNAUGHTY INTEGER, ";
+        sql += "LATITUDE NUMERIC, ";
+        sql += "LONGITUDE NUMERIC, ";
+        sql += "ISNAUGHTY NUMERIC, ";
         sql += "DATECREATED TEXT);";
         return sql;
     }
 
-    private void insertNaughtyChild(SQLiteDatabase db, NaughtyChild naughtyChild) {
+    public void insertNaughtyChild(SQLiteDatabase db, NaughtyChild naughtyChild) {
         ContentValues values = new ContentValues();
         values.put("FIRSTNAME", naughtyChild.getFirstName());
         values.put("LASTNAME", naughtyChild.getLastName());
@@ -68,7 +68,7 @@ public class DbOperator extends SQLiteOpenHelper {
     private void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
         try {
             if (oldVersion < 1) {
-                Log.i("teg", "1111111111111111111111111");
+                //Log.i("teg", "1111111111111111111111111");
                 db.execSQL(getCreateCountryTableSql());
                 for (NaughtyChild c : NaughtyChild.NaughtyChilds) {
                     insertNaughtyChild(db, c);

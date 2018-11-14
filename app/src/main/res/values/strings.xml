@@ -2,6 +2,23 @@
     <string name="app_name">Tong_Chang</string>
 
     <string name="search">Search Naughty Child</string>
+    <string name="submit">Submit</string>
+    <string name="delete">Delete</string>
+    <string name="edit">EDIT</string>
     <string name="add">Add Naughty Child</string>
     <string name="show">Show All Naughty Child</string>
+    <string name="idNaughty">ID: </string>
+    <string name="firstName">Frist Name: </string>
+    <string name="lastName">Last Name: </string>
+    <string name="birthday">Birthday: </string>
+    <string name="street">Street: </string>
+    <string name="city">City: </string>
+    <string name="province">Province: </string>
+    <string name="postalCode">Postal Code: </string>
+    <string name="country">Country: </string>
+    <string name="latitude">Latitude: </string>
+    <string name="longitude">Longitude: </string>
+    <string name="isNaughty">Is Naughty: </string>
+    <string name="dateCreated">Date Created: </string>
+
 </resources>
