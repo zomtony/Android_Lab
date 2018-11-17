@@ -2,8 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:id="@+id/add"
+        android:title="@string/tool_add"
+        android:icon="@drawable/baseline_star_black_24"
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/device_info"
-        android:title="@string/add"
-        android:orderInCategory="1" />
+    <item android:id="@+id/search"
+        android:title="@string/tool_search"
+        android:icon="@drawable/baseline_search_black_24"
+        android:orderInCategory="2"
+        app:showAsAction="ifRoom" />
+
 </menu>

@@ -6,8 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,13 +14,15 @@ import android.widget.Toast;
 public class EditNaughtyActivity extends AppCompatActivity {
     private SQLiteDatabase db;
     private Cursor cursor;
+    private boolean isEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_naughty);
-        if(NaughtyDetailActivity.TAG == 1){
-            NaughtyDetailActivity.TAG = 0;
+        int edit = (Integer) getIntent().getExtras().get("edit");
+        isEdit = (edit == 1);
 
+        if(isEdit){
             TextView idN = findViewById(R.id.idNaughty);
             EditText firstName =  findViewById(R.id.firstName);
             EditText lastName =  findViewById(R.id.lastName);
@@ -35,7 +35,6 @@ public class EditNaughtyActivity extends AppCompatActivity {
             EditText latitude =  findViewById(R.id.latitude);
             EditText longitude =  findViewById(R.id.longitude);
             EditText isNaughty =  findViewById(R.id.isNaughty);
-            EditText dateCreated =  findViewById(R.id.dateCreated);
 
             idN.setText(Integer.toString(NaughtyDetailActivity.naughtyChildInfo.getId()));
             firstName.setText(NaughtyDetailActivity.naughtyChildInfo.getFirstName());
@@ -48,8 +47,7 @@ public class EditNaughtyActivity extends AppCompatActivity {
             country.setText(NaughtyDetailActivity.naughtyChildInfo.getCountry());
             latitude.setText(Double.toString(NaughtyDetailActivity.naughtyChildInfo.getLatitude()));
             longitude.setText(Double.toString(NaughtyDetailActivity.naughtyChildInfo.getLongitude()));
-            isNaughty.setText(Integer.toString(NaughtyDetailActivity.naughtyChildInfo.getIsNaughty()));
-            dateCreated.setText(NaughtyDetailActivity.naughtyChildInfo.getDateCreated());
+            isNaughty.setText(Boolean.toString(NaughtyDetailActivity.naughtyChildInfo.getIsNaughty()));
 
         }
     }
@@ -57,54 +55,72 @@ public class EditNaughtyActivity extends AppCompatActivity {
     public void submitInfo(View v){
         DbOperator helper = new DbOperator(this);
         TextView idN =  findViewById(R.id.idNaughty);
-        EditText firstName =  findViewById(R.id.firstName);
-        EditText lastName =  findViewById(R.id.lastName);
-        EditText birthday =  findViewById(R.id.birthday);
-        EditText street =  findViewById(R.id.street);
-        EditText city =  findViewById(R.id.cityName);
-        EditText province =  findViewById(R.id.province);
-        EditText postalCode =  findViewById(R.id.postalCode);
-        EditText country =  findViewById(R.id.country);
-        EditText latitude =  findViewById(R.id.latitude);
-        EditText longitude =  findViewById(R.id.longitude);
-        EditText isNaughty =  findViewById(R.id.isNaughty);
-        EditText dateCreated =  findViewById(R.id.dateCreated);
+        EditText firstName_et =  findViewById(R.id.firstName);
+        EditText lastName_et =  findViewById(R.id.lastName);
+        EditText birthday_et =  findViewById(R.id.birthday);
+        EditText street_et =  findViewById(R.id.street);
+        EditText city_et =  findViewById(R.id.cityName);
+        EditText province_et =  findViewById(R.id.province);
+        EditText postalCode_et =  findViewById(R.id.postalCode);
+        EditText country_et =  findViewById(R.id.country);
+        EditText latitude_et =  findViewById(R.id.latitude);
+        EditText longitude_et =  findViewById(R.id.longitude);
+        EditText isNaughty_et =  findViewById(R.id.isNaughty);
 
         try {
             db = helper.getReadableDatabase();
-            Cursor cursor= db.rawQuery("select ID from NAUGHTYCHILDINFO where ID = '"+ idN.getText() + "'", null);
-            int count = cursor.getCount();
-            if (count != 0){
-                db = helper.getReadableDatabase();
-                db.delete("NAUGHTYCHILDINFO", "ID = '" + idN.getText() + "'", null);
 
-
+            int id = Integer.parseInt(idN.getText().toString());
+            String firstName = firstName_et.getText().toString();
+            String lastName = lastName_et.getText().toString();
+            String birthday = birthday_et.getText().toString();
+            String street = street_et.getText().toString();
+            String city = city_et.getText().toString();
+            String province = province_et.getText().toString();
+            String postalCode = postalCode_et.getText().toString();
+            String country = country_et.getText().toString();
+            double latitude;
+            if(latitude_et.getText().toString().isEmpty()){
+                latitude = 0.0;
+            } else {
+                latitude = Double.parseDouble(latitude_et.getText().toString());
             }
-            NaughtyChild naughtyChild = new NaughtyChild(firstName.getText().toString(),
-                    lastName.getText().toString(), birthday.getText().toString(), street.getText().toString(),
-                    city.getText().toString(), province.getText().toString(), postalCode.getText().toString(),
-                    country.getText().toString(),  Double.parseDouble(latitude.getText().toString()),
-                    Double.parseDouble(longitude.getText().toString()),
-                    Integer.parseInt(isNaughty.getText().toString()),
-                    dateCreated.getText().toString());
-            helper.insertNaughtyChild(db, naughtyChild);
+            double longitude;
+            if(longitude_et.getText().toString().isEmpty()){
+                longitude = 0.0;
+            } else {
+                longitude = Double.parseDouble(longitude_et.getText().toString());
+            }
+            boolean isNaughty;
+            if(isNaughty_et.getText().toString().equals("false")){
+                isNaughty = false;
+            } else {
+                isNaughty = true;
+            }
+
+            NaughtyChild naughtyChild = new NaughtyChild(
+                    firstName, lastName, birthday,
+                    street, city, province, postalCode, country,
+                    latitude, longitude,
+                    isNaughty
+                    );
+            naughtyChild.setId(id);
+            if(isEdit){
+                helper.updateNaughtyChild(db, naughtyChild);
+            }else{
+                helper.insertNaughtyChild(db, naughtyChild);
+            }
+
             db.close();
             Intent intent = new Intent(EditNaughtyActivity.this, MainActivity.class);
             startActivity(intent);
 
-            if (cursor.moveToFirst()) {
-                int ndx=0;
-                do {
-                } while (cursor.moveToNext());
-            }
         } catch (SQLiteException sqlex) {
-            String msg = "[MainActivity / getContinents] DB unavailable";
+            String msg = "[EditNaughtyActivity / submitInfo] DB unavailable";
             msg += "\n\n" + sqlex.toString();
 
             Toast t = Toast.makeText(this, msg, Toast.LENGTH_LONG);
             t.show();
         }
-
-
     }
 }

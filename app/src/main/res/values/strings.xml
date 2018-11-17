@@ -7,10 +7,11 @@
     <string name="edit">EDIT</string>
     <string name="add">Add Naughty Child</string>
     <string name="show">Show All Naughty Child</string>
+
     <string name="idNaughty">ID: </string>
     <string name="firstName">Frist Name: </string>
     <string name="lastName">Last Name: </string>
-    <string name="birthday">Birthday: </string>
+    <string name="birthday">Birthday(yyyy/mm/dd): </string>
     <string name="street">Street: </string>
     <string name="city">City: </string>
     <string name="province">Province: </string>
@@ -20,5 +21,10 @@
     <string name="longitude">Longitude: </string>
     <string name="isNaughty">Is Naughty: </string>
     <string name="dateCreated">Date Created: </string>
+
+    <string name="birthday_noformat">Birthday: </string>
+
+    <string name="tool_add">Add</string>
+    <string name="tool_search">Search</string>
 
 </resources>
