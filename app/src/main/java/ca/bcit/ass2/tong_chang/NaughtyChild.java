@@ -1,5 +1,8 @@
 package ca.bcit.ass2.tong_chang;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class NaughtyChild {
@@ -14,12 +17,11 @@ public class NaughtyChild {
     private String country;
     private double latitude;
     private double longitude;
-    private int isNaughty;
+    private boolean isNaughty;
     private String dateCreated;
 
-    // Each country has a name, description and an image resource
     public NaughtyChild(String firstName, String lastName,  String birthday, String street, String city, String province,
-                   String postalCode, String country, double latitude, double longitude, int isNaughty, String dateCreated) {
+                   String postalCode, String country, double latitude, double longitude, boolean isNaughty, String dateCreated) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthday = birthday;
@@ -32,20 +34,38 @@ public class NaughtyChild {
         this.longitude = longitude;
         this.isNaughty = isNaughty;
         this.dateCreated = dateCreated;
+    }
 
+    public NaughtyChild(String firstName, String lastName,  String birthday, String street, String city, String province,
+                        String postalCode, String country, double latitude, double longitude, boolean isNaughty) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthday = birthday;
+        this.street = street;
+        this.city = city;
+        this.province = province;
+        this.postalCode = postalCode;
+        this.country = country;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.isNaughty = isNaughty;
+
+        Date now = new Date();
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy/MM/dd");
+        this.dateCreated = dateFormatter.format(now);
     }
 
     public static final NaughtyChild[] NaughtyChilds = {
-            new NaughtyChild("mark", "ma", "2018-01-11",
-                    "alder", "richmond", "BC", "v20 0a1", "21", 12,1,1, "1990-12-12"),
-            new NaughtyChild("yipan", "wu", "2018-01-11",
-                    "alder", "richmond", "BC", "v20 0a1", "21", 12,1,1, "1990-12-12"),
-            new NaughtyChild("yue", "yu", "2018-01-11",
-                    "alder", "richmond", "BC", "v20 0a1", "21", 12,1,1, "1990-12-12"),
-            new NaughtyChild("yang", "tong", "2018-01-11",
-                    "alder", "richmond", "BC", "v20 0a1", "21", 12,1,1, "1990-12-12"),
-            new NaughtyChild("tim", "cook", "2018-01-11",
-                    "alder", "richmond", "BC", "v20 0a1", "21", 12,1,1, "1990-12-12")
+            new NaughtyChild("Mark", "Ma", "2018/01/11",
+                    "alder", "richmond", "BC", "v20 0a1", "21", 12,1,true, "1990/12/12"),
+            new NaughtyChild("yipan", "wu", "2018/01/11",
+                    "alder", "richmond", "BC", "v20 0a1", "21", 12,1,true, "1990/12/12"),
+            new NaughtyChild("yue", "yu", "2018/01/11",
+                    "alder", "richmond", "BC", "v20 0a1", "21", 12,1,true, "1990/12/12"),
+            new NaughtyChild("yang", "tong", "2018/01/11",
+                    "alder", "richmond", "BC", "v20 0a1", "21", 12,1,true, "1990/12/12"),
+            new NaughtyChild("tim", "cook", "2018/01/11",
+                    "alder", "richmond", "BC", "v20 0a1", "21", 12,1,true, "1990/12/12")
 
     };
 
@@ -129,11 +149,11 @@ public class NaughtyChild {
         this.longitude = longitude;
     }
 
-    public int getIsNaughty() {
+    public boolean getIsNaughty() {
         return isNaughty;
     }
 
-    public void setIsNaughty(int isNaughty) {
+    public void setIsNaughty(boolean isNaughty) {
         this.isNaughty = isNaughty;
     }
 
@@ -144,6 +164,7 @@ public class NaughtyChild {
     public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
+
     public int getId() {
         return id;
     }

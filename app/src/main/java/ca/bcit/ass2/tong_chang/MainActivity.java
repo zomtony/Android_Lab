@@ -4,21 +4,20 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private SQLiteDatabase db;
     private Cursor cursor;
-    public static int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +37,37 @@ public class MainActivity extends AppCompatActivity {
         list_naughty.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                id = Integer.parseInt(childInfo[i].split(" ")[0]);
+                int id = Integer.parseInt(childInfo[i].split(" ")[0]);
                 Intent intent = new Intent(MainActivity.this, NaughtyDetailActivity.class);
+                intent.putExtra("id", id);
                 startActivity(intent);
             }
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu. This adds items to the app bar.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add:
+                Intent intent = new Intent(MainActivity.this, EditNaughtyActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.search:
+                Intent i = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     private String[] getChildInfo() {
         DbOperator helper = new DbOperator(this);
@@ -52,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         String[] naughty = null;
         try {
             db = helper.getReadableDatabase();
-            Cursor cursor= db.rawQuery("select DISTINCT ID, FIRSTNAME from NAUGHTYCHILDINFO", null);
+            Cursor cursor= db.rawQuery("select DISTINCT ID, FIRSTNAME, LASTNAME from NAUGHTYCHILDINFO", null);
 
             int count = cursor.getCount();
             naughty = new String[count];
@@ -60,11 +83,11 @@ public class MainActivity extends AppCompatActivity {
             if (cursor.moveToFirst()) {
                 int ndx=0;
                 do {
-                    naughty[ndx++] = cursor.getString(0) + " "+ cursor.getString(1);
+                    naughty[ndx++] = cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2);
                 } while (cursor.moveToNext());
             }
         } catch (SQLiteException sqlex) {
-            String msg = "[MainActivity / getContinents] DB unavailable";
+            String msg = "[MainActivity / getChildInfo] DB unavailable";
             msg += "\n\n" + sqlex.toString();
 
             Toast t = Toast.makeText(this, msg, Toast.LENGTH_LONG);
@@ -72,60 +95,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return naughty;
-    }
-
-    private String[] searchChildInfo(String key) {
-        DbOperator helper = new DbOperator(this);
-
-        String[] naughty = null;
-        try {
-            db = helper.getReadableDatabase();
-            Cursor cursor= db.rawQuery("select * from NAUGHTYCHILDINFO where FIRSTNAME LIKE '%" + key + "%' OR LASTNAME LIKE '%" + key + "%'", null);
-
-            int count = cursor.getCount();
-            naughty = new String[count];
-
-            if (cursor.moveToFirst()) {
-                int ndx=0;
-                do {
-                    naughty[ndx++] = cursor.getString(0) + " "+ cursor.getString(1);
-                } while (cursor.moveToNext());
-            }
-        } catch (SQLiteException sqlex) {
-            String msg = "[MainActivity / getContinents] DB unavailable";
-            msg += "\n\n" + sqlex.toString();
-
-            Toast t = Toast.makeText(this, msg, Toast.LENGTH_LONG);
-            t.show();
-        }
-
-        return naughty;
-    }
-
-    public void SearchNaughty(View v){
-        ListView list_naughty = (ListView) findViewById(R.id.list_naughty);
-
-        EditText keyWord = findViewById(R.id.keyWord);
-        final String[] childInfo = searchChildInfo(keyWord.getText().toString());
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_list_item_1, childInfo
-        );
-        list_naughty.setAdapter(arrayAdapter);
-
-        list_naughty.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                id = Integer.parseInt(childInfo[i].split(" ")[0]);
-                Intent intent = new Intent(MainActivity.this, NaughtyDetailActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
-    public void createNaughty(View v){
-        Intent intent = new Intent(MainActivity.this, EditNaughtyActivity.class);
-        startActivity(intent);
     }
 
     @Override

@@ -6,32 +6,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
+
     <include layout="@layout/toolbar_main" android:id="@+id/toolbar" />
 
-    <EditText
-        android:id="@+id/keyWord"
-        android:layout_width="match_parent"
-        android:layout_height="42dp"/>
+    <!--<EditText-->
+        <!--android:id="@+id/keyWord"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="42dp"/>-->
 
-    <Button
-        android:id="@+id/SearchButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/search"
-        android:onClick="SearchNaughty"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="200dp" />
+    <!--<Button-->
+        <!--android:id="@+id/SearchButton"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/search"-->
+        <!--android:onClick="SearchNaughty"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--tools:layout_editor_absoluteY="200dp" />-->
 
-    <Button
-        android:id="@+id/CreateButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="create"
-        android:onClick="createNaughty"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="200dp" />
+    <!--<Button-->
+        <!--android:id="@+id/CreateButton"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="create"-->
+        <!--android:onClick="createNaughty"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--tools:layout_editor_absoluteY="200dp" />-->
 
     <ListView
         android:id="@+id/list_naughty"
